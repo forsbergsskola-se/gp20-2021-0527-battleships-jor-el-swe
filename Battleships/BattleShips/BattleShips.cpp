@@ -6,6 +6,7 @@
 
 int main()
 {
+    Graphics::initGraphics();
     Graphics::drawGrid();
 }
 
