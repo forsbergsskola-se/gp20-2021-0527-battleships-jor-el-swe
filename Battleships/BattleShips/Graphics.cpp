@@ -13,7 +13,20 @@ void Graphics::initGraphics(void)
 
 void Graphics::drawGrid(void)
 {
-	cout << "drawing grid";
+	const string letters = "abcdefghij";
+	drawTop();
+	drawTop();
+	cout << endl;
+
+	for (int i = 0; i < letters.length()+1; i++) {
+		cout << letters[i] << endl;
+	}
+}
+
+void Graphics::drawTop() {
+	for (int i = 1; i < 11; i++) {
+		cout << "   " << i << "   ";
+	}
 }
 
 
