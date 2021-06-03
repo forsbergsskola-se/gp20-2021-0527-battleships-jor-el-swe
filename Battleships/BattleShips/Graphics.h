@@ -9,5 +9,6 @@ public:
 
 private: 
 	static void drawTop(void);
+	static void drawRow(char letter);
 };
 

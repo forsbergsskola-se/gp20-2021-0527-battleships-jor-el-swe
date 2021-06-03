@@ -19,7 +19,8 @@ void Graphics::drawGrid(void)
 	cout << endl;
 
 	for (int i = 0; i < letters.length()+1; i++) {
-		cout << letters[i] << endl;
+		drawRow(letters[i]);
+		cout << endl;
 	}
 }
 
@@ -27,6 +28,10 @@ void Graphics::drawTop() {
 	for (int i = 1; i < 11; i++) {
 		cout << "   " << i << "   ";
 	}
+}
+
+void Graphics::drawRow(char letter) {
+	cout << letter;
 }
 
 
