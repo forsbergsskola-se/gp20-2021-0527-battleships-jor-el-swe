@@ -25,12 +25,13 @@ void Graphics::drawGrid(void)
 }
 
 void Graphics::drawTop() {
-	for (int i = 1; i < 11; i++) {
-		cout << "   " << i << "   ";
+	for (int i = 0; i < 10; i++) {
+		cout << "   " << i;
 	}
 }
 
 void Graphics::drawRow(char letter) {
+	//TODO make it also print missed shots and hits on ships
 	cout << letter;
 }
 
