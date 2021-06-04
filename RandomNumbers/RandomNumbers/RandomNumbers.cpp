@@ -19,10 +19,15 @@ int main()
         countNumbers++;
         iterations--;
         auto randomInt = rand() % 20 + 1;
+        randomNumberDistribution[randomInt-1]++;
     }
     
-    cout << "generated " << countNumbers << " random numbers:";
+    cout <<endl<< "generated " << countNumbers << " random numbers:"<<endl;
 
+
+    for (int i = 0;i < sizeof(randomNumberDistribution)/sizeof(int);i++) {
+        cout << "Number " << i+1<<": "<< randomNumberDistribution[i]<< " times ("<< 100*randomNumberDistribution[i]/ (float)countNumbers<<"%)"<< endl;
+    }
 }
 
 /*
