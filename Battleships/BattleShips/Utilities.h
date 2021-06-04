@@ -5,7 +5,7 @@ using namespace std;
 #define ROW 0
 #define COLUMN 1
 #define LOWER_CASE_A 97
-#define ZERO 48
+#define CHAR_ZERO 48
 class Utilities
 {
 	public:

@@ -28,7 +28,7 @@ int Utilities::ValidateAndTranslatePosition(string message)
         successfulInput = true;
 
         arrayPosition += (playerPosition[ROW] - LOWER_CASE_A)*10;
-        arrayPosition += playerPosition[COLUMN] - ZERO;
+        arrayPosition += playerPosition[COLUMN] - CHAR_ZERO;
         
     }
     return arrayPosition;

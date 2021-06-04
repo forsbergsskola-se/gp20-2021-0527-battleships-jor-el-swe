@@ -25,7 +25,7 @@ bool PlayingField::setShipAtPosition(int position, int value)
 	if(grid[position]!='?')
 		return false;
 
-	grid[position] = (char)value + ZERO;
+	grid[position] = (char)value + CHAR_ZERO;
 	return true;
 }
 
