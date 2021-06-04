@@ -16,7 +16,7 @@ void enterShips(PlayingField& pfieldOpen,PlayingField& pfieldHidden, Ship* ships
     for (int i = 0; i < 5;i++) {
         
         ostringstream oss;
-        cout << "player " << playerId << " enter position for ship number " << i+1 << "(a3,g6,h7...):";
+        cout << "player " << playerId +1<< " enter position for ship number " << i+1 << "(a3,g6,h7...):";
         string instruction = oss.str();
         int arrayPosition = 0;
         do {
