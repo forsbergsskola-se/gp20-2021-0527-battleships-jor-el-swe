@@ -100,7 +100,7 @@ void mainLoop() {
             cout << "you hit a ship!"<<endl;
             Graphics::waitForKey();
             sinkShip(shipNumber);
-            currentPlayer == 0 ? player2FieldHidden.markPositionWithCharacter(position, char(shipNumber+ZERO)) : player1FieldHidden.markPositionWithCharacter(position, char(shipNumber + ZERO));
+            currentPlayer == 0 ? player2FieldHidden.markPositionWithCharacter(position, char(shipNumber+ZERO+1)) : player1FieldHidden.markPositionWithCharacter(position, char(shipNumber + ZERO+1));
         }
         else {
             cout << "miss!" << endl;
@@ -113,7 +113,7 @@ void mainLoop() {
         currentPlayer &= 1;
     }
 
-    cout << "Player " << currentPlayer +1 << " wins! :)";
+    cout << "Player " << currentPlayer +1 << " wins! :)"<<endl;
     Graphics::waitForKey();
 
 }
