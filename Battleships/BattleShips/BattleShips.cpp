@@ -16,10 +16,11 @@ int main()
 
     int currentPlayer = 0;
    
-    std::ostringstream oss;
-    oss << "Player " << currentPlayer << " enter a coordinate:";
-    std::string instruction = oss.str();
+    ostringstream oss;
+    oss << "Player " << currentPlayer << " enter a coordinate (a0, g4, h7 etc...):";
+    string instruction = oss.str();
 
     int arrayPosition = Utilities::ValidateAndTranslatePosition(instruction);
+
 }
 
