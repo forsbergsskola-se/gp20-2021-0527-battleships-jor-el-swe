@@ -2,10 +2,27 @@
 //
 
 #include <iostream>
+using namespace std;
+
+constexpr auto GREEN = "\033[32m";
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    cout << GREEN;
+    int randomNumberDistribution[20]{};
+    srand(time(NULL));
+    cout << "how many random numbers?";
+    int iterations = 0, countNumbers=0;
+    cin >> iterations;
+
+    while (iterations > 0) {
+        countNumbers++;
+        iterations--;
+        auto randomInt = rand() % 20 + 1;
+    }
+    
+    cout << "generated " << countNumbers << " random numbers:";
+
 }
 
 /*
