@@ -59,7 +59,7 @@ void enterShips() {
 bool areAllShipsSunk() {
 
     for (int i = 0; i < 5; i++) {
-        bool isSunk = currentPlayer == 0 ? player1Ships[i].getIsSunk() : player2Ships[i].getIsSunk();
+        bool isSunk = currentPlayer == 0 ? player2Ships[i].getIsSunk() : player1Ships[i].getIsSunk();
         if (!isSunk)
             return false;
     }
@@ -69,7 +69,7 @@ bool areAllShipsSunk() {
 
 bool checkForHitOnShip(int position, int& shipNumber) {
     for (int i = 0; i < 5; i++) {
-        Ship testShip = currentPlayer == 0 ? player1Ships[i] : player2Ships[i];
+        Ship testShip = currentPlayer == 0 ? player2Ships[i] : player1Ships[i];
         if (testShip.getPosition() == position) {
             shipNumber = i;
             return true;
@@ -79,20 +79,14 @@ bool checkForHitOnShip(int position, int& shipNumber) {
 }
 
 void sinkShip(int shipNumber) {
-    currentPlayer == 0 ? player1Ships[shipNumber].sinkShip() : player2Ships[shipNumber].sinkShip(); 
+    currentPlayer == 0 ? player2Ships[shipNumber].sinkShip() : player1Ships[shipNumber].sinkShip(); 
 }
 
 void mainLoop() {
 
     bool gameIsAlive = true;
 
-    while (gameIsAlive) {
-        if (areAllShipsSunk())
-            break;
-        
-        currentPlayer++;
-        currentPlayer &= 1;
-
+    while (gameIsAlive) {       
         Graphics::clearScreen();
         Graphics::drawGrid(player1FieldHidden, player2FieldHidden);
 
@@ -106,13 +100,17 @@ void mainLoop() {
             cout << "you hit a ship!"<<endl;
             Graphics::waitForKey();
             sinkShip(shipNumber);
-            currentPlayer == 0 ? player1FieldHidden.markPositionWithCharacter(position, char(shipNumber+ZERO)) : player2FieldHidden.markPositionWithCharacter(position, char(shipNumber + ZERO));
+            currentPlayer == 0 ? player2FieldHidden.markPositionWithCharacter(position, char(shipNumber+ZERO)) : player1FieldHidden.markPositionWithCharacter(position, char(shipNumber + ZERO));
         }
         else {
             cout << "miss!" << endl;
-            currentPlayer == 0 ? player1FieldHidden.markPositionWithCharacter(position, '*') : player2FieldHidden.markPositionWithCharacter(position, '*');
+            currentPlayer == 0 ? player2FieldHidden.markPositionWithCharacter(position, '*') : player1FieldHidden.markPositionWithCharacter(position, '*');
             Graphics::waitForKey();
         }
+        if (areAllShipsSunk())
+            break;
+        currentPlayer++;
+        currentPlayer &= 1;
     }
 
     cout << "Player " << currentPlayer +1 << " wins! :)";
