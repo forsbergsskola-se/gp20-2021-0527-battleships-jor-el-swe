@@ -14,7 +14,8 @@ using namespace std;
 void enterShips(PlayingField& pfieldOpen,PlayingField& pfieldHidden, Ship* ships, int playerId) {
  
     for (int i = 0; i < 5;i++) {
-        
+        Graphics::clearScreen();
+        Graphics::drawGrid(pfieldOpen, pfieldHidden);
         ostringstream oss;
         cout << "player " << playerId +1<< " enter position for ship number " << i+1 << "(a3,g6,h7...):";
         string instruction = oss.str();
@@ -24,7 +25,6 @@ void enterShips(PlayingField& pfieldOpen,PlayingField& pfieldHidden, Ship* ships
         } while (!pfieldOpen.setShipAtPosition(arrayPosition, i+1));
             
         ships[i].setPosition(arrayPosition);
-        Graphics::drawGrid(pfieldOpen, pfieldHidden);
     }
 
 }
@@ -52,6 +52,7 @@ int main()
     currentPlayer++;
     enterShips(player2FieldOpen, player1FieldHidden, player2Ships, currentPlayer);
     currentPlayer = 0;
+    Graphics::clearScreen();
 
     ostringstream oss;
     oss << "Player " << currentPlayer << " enter a coordinate (a0, g4, h7 etc...):";
