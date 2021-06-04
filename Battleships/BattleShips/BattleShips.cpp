@@ -15,7 +15,7 @@ void enterShips(PlayingField& pfieldOpen,PlayingField& pfieldHidden, Ship* ships
  
     for (int i = 0; i < 5;i++) {
         Graphics::clearScreen();
-        Graphics::drawGrid(pfieldOpen, pfieldHidden);
+        playerId == 0 ? Graphics::drawGrid(pfieldOpen, pfieldHidden): Graphics::drawGrid(pfieldHidden, pfieldOpen);
         ostringstream oss;
         cout << "player " << playerId +1<< " enter position for ship number " << i+1 << "(a3,g6,h7...):";
         string instruction = oss.str();
@@ -26,7 +26,9 @@ void enterShips(PlayingField& pfieldOpen,PlayingField& pfieldHidden, Ship* ships
             
         ships[i].setPosition(arrayPosition);
     }
-
+    Graphics::clearScreen();
+    playerId == 0 ? Graphics::drawGrid(pfieldOpen, pfieldHidden) : Graphics::drawGrid(pfieldHidden, pfieldOpen);
+    system("pause");
 }
 
 int main()
@@ -46,7 +48,6 @@ int main()
     player1FieldOpen.init();
     player2FieldOpen.init();
     Graphics::initGraphics();
-    Graphics::drawGrid(player1FieldHidden, player2FieldHidden);
 
     enterShips(player1FieldOpen, player2FieldHidden, player1Ships, currentPlayer);
     currentPlayer++;
