@@ -28,3 +28,8 @@ bool PlayingField::setShipAtPosition(int position, int value)
 	grid[position] = (char)value + ZERO;
 	return true;
 }
+
+void PlayingField::markPositionWithCharacter(int position, char c)
+{
+	grid[position] = c;
+}

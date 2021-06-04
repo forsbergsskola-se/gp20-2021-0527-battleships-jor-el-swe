@@ -37,7 +37,7 @@ void enterShips(PlayingField& pfieldOpen,PlayingField& pfieldHidden, Ship* ships
     }
     Graphics::clearScreen();
     playerId == 0 ? Graphics::drawGrid(pfieldOpen, pfieldHidden) : Graphics::drawGrid(pfieldHidden, pfieldOpen);
-    system("pause");
+    Graphics::waitForKey();
 }
 
 void init() {
@@ -67,23 +67,56 @@ bool areAllShipsSunk() {
     return true;
 }
 
+bool checkForHitOnShip(int position, int& shipNumber) {
+    for (int i = 0; i < 5; i++) {
+        Ship testShip = currentPlayer == 0 ? player1Ships[i] : player2Ships[i];
+        if (testShip.getPosition() == position) {
+            shipNumber = i;
+            return true;
+        }
+    }
+    return false;
+}
+
+void sinkShip(int shipNumber) {
+    currentPlayer == 0 ? player1Ships[shipNumber].sinkShip() : player2Ships[shipNumber].sinkShip(); 
+}
+
 void mainLoop() {
-    ostringstream oss;
+
     bool gameIsAlive = true;
 
     while (gameIsAlive) {
         if (areAllShipsSunk())
             break;
-        oss << "Player " << currentPlayer << " enter a coordinate to hit (a0, g4, h7 etc...):";
+        
+        currentPlayer++;
+        currentPlayer &= 1;
+
+        Graphics::clearScreen();
+        Graphics::drawGrid(player1FieldHidden, player2FieldHidden);
+
+        ostringstream oss;
+        oss << "Player " << currentPlayer +1 << " enter a coordinate to hit (a0, g4, h7 etc...):";
         string instruction = oss.str();
 
-        int arrayPosition = Utilities::ValidateAndTranslatePosition(instruction);
-
-
+        int position = Utilities::ValidateAndTranslatePosition(instruction);
+        int shipNumber = 0;
+        if (checkForHitOnShip(position, shipNumber)) {
+            cout << "you hit a ship!"<<endl;
+            Graphics::waitForKey();
+            sinkShip(shipNumber);
+            currentPlayer == 0 ? player1FieldHidden.markPositionWithCharacter(position, char(shipNumber+ZERO)) : player2FieldHidden.markPositionWithCharacter(position, char(shipNumber + ZERO));
+        }
+        else {
+            cout << "miss!" << endl;
+            currentPlayer == 0 ? player1FieldHidden.markPositionWithCharacter(position, '*') : player2FieldHidden.markPositionWithCharacter(position, '*');
+            Graphics::waitForKey();
+        }
     }
 
-    cout << "Player " << currentPlayer << " wins! :)";
-    system("pause");
+    cout << "Player " << currentPlayer +1 << " wins! :)";
+    Graphics::waitForKey();
 
 }
 int main()

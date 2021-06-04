@@ -7,5 +7,6 @@ class PlayingField
 		void init(void);
 		void getRowNumber(int, char*);
 		bool setShipAtPosition(int, int);
+		void markPositionWithCharacter(int, char);
 };
 

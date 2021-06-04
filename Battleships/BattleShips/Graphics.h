@@ -13,6 +13,10 @@ public:
 		system("CLS");
 	}
 
+	static void waitForKey(void) {
+		system("pause");
+	}
+
 private: 
 	static void drawTop(void);
 	static void drawRow(char, char*,char*);

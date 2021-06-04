@@ -19,5 +19,11 @@ class Ship
 		{
 			return isSunk;
 		}
+
+
+		void sinkShip()
+		{
+			isSunk=true;
+		}
 };
 
