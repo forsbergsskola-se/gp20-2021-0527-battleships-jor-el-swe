@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include "PlayingField.h"
+#include "Utilities.h"
 
 using namespace std;
 
@@ -17,4 +18,13 @@ void PlayingField::getRowNumber(int rowNumber, char* row)
 	for (int i = 0; i < 10; i++) {
 		row[i] = grid[i + rowNumber * 10];
 	}
+}
+
+bool PlayingField::setShipAtPosition(int position, int value)
+{
+	if(grid[position]!='?')
+		return false;
+
+	grid[position] = (char)value + ZERO;
+	return true;
 }

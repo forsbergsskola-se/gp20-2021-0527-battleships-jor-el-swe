@@ -37,9 +37,7 @@ void Graphics::drawTop() {
 }
 
 void Graphics::drawRow(char letter, char* r1, char* r2) {
-	//TODO make it also print missed shots and hits on ships
 	cout << letter;
-
 	for (int i = 0; i < 10; i++) {
 		cout << "   " << r1[i];
 	}

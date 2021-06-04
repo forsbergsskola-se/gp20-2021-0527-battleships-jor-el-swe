@@ -6,5 +6,6 @@ class PlayingField
 	public:
 		void init(void);
 		void getRowNumber(int, char*);
+		bool setShipAtPosition(int, int);
 };
 
