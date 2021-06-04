@@ -11,6 +11,15 @@
 
 using namespace std;
 
+int currentPlayer = 0;
+PlayingField player1FieldHidden;
+PlayingField player2FieldHidden;
+PlayingField player1FieldOpen;
+PlayingField player2FieldOpen;
+
+Ship player1Ships[5];
+Ship player2Ships[5];
+
 void enterShips(PlayingField& pfieldOpen,PlayingField& pfieldHidden, Ship* ships, int playerId) {
  
     for (int i = 0; i < 5;i++) {
@@ -31,36 +40,57 @@ void enterShips(PlayingField& pfieldOpen,PlayingField& pfieldHidden, Ship* ships
     system("pause");
 }
 
-int main()
-{
-    int currentPlayer = 0;
-    PlayingField player1FieldHidden;
-    PlayingField player2FieldHidden;
-    PlayingField player1FieldOpen;
-    PlayingField player2FieldOpen;
-
-    Ship player1Ships[5];
-    Ship player2Ships[5];
-
-
+void init() {
     player1FieldHidden.init();
     player2FieldHidden.init();
     player1FieldOpen.init();
     player2FieldOpen.init();
     Graphics::initGraphics();
+}
 
+void enterShips() {
     enterShips(player1FieldOpen, player2FieldHidden, player1Ships, currentPlayer);
     currentPlayer++;
     enterShips(player2FieldOpen, player1FieldHidden, player2Ships, currentPlayer);
     currentPlayer = 0;
     Graphics::clearScreen();
+}
 
+bool areAllShipsSunk() {
+
+    for (int i = 0; i < 5; i++) {
+        bool isSunk = currentPlayer == 0 ? player1Ships[i].getIsSunk() : player2Ships[i].getIsSunk();
+        if (!isSunk)
+            return false;
+    }
+
+    return true;
+}
+
+void mainLoop() {
     ostringstream oss;
-    oss << "Player " << currentPlayer << " enter a coordinate (a0, g4, h7 etc...):";
-    string instruction = oss.str();
+    bool gameIsAlive = true;
 
-    int arrayPosition = Utilities::ValidateAndTranslatePosition(instruction);
+    while (gameIsAlive) {
+        if (areAllShipsSunk())
+            break;
+        oss << "Player " << currentPlayer << " enter a coordinate to hit (a0, g4, h7 etc...):";
+        string instruction = oss.str();
 
+        int arrayPosition = Utilities::ValidateAndTranslatePosition(instruction);
+
+
+    }
+
+    cout << "Player " << currentPlayer << " wins! :)";
+    system("pause");
+
+}
+int main()
+{
+    init();
+    enterShips();
+    mainLoop();
 }
 
 
