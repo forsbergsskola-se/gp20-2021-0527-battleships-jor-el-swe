@@ -15,11 +15,11 @@ int main()
     int iterations = 0, countNumbers=0;
     cin >> iterations;
 
-    while (iterations > 0) {
+    for (int i = 0; i < iterations; i++) {
         countNumbers++;
-        iterations--;
+
         auto randomInt = rand() % 20 + 1;
-        randomNumberDistribution[randomInt-1]++;
+        randomNumberDistribution[randomInt - 1]++;
     }
     
     cout <<endl<< "generated " << countNumbers << " random numbers:"<<endl;
